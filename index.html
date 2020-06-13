@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<title>Javascript Task</title>
+</head>
+
+<body>
+  <script type = "text/javascript">
+
+// ---------------------------------------------------
+
+    function convertMinutestoSecond(hours) {
+     return Math.floor(hours * 60);
+    }
+// ---------------------------------------------------
+
+    function dividesEvenly(a,b){
+ 		return (a % b === 0);
+    }
+// ---------------------------------------------------
+
+	function str_con_cat(str1, str2) {
+	  var i = 0,n = 0,j = 0; 
+  
+            while (true) { 
+                j = str1.indexOf(str2, j); 
+                if (j >= 0) { 
+                    n++; 
+                    j++; 
+                } else 
+                    break; 
+            } 
+            return n;
+	}
+// ---------------------------------------------------
+
+	function addUpto(num){
+		var i,sum = 0;
+		var n = Number(num);
+		for (i = 1; i < n+1; i++) {
+  				sum+=i;
+		}
+		return sum;
+	}
+// ---------------------------------------------------
+
+	function replaceVowel(str){
+		var newStr;
+		
+		for(var i = 0; i < str.length; i++){
+			var letter = str.charAt(i);
+			if(letter === 'a')
+				newStr+='1';
+			
+			else if(letter === 'e')
+				newStr+='2';
+			
+			else if(letter === 'i')
+				newStr+='3';
+			
+			else if(letter === 'o')
+				newStr+='4';
+			
+			else if(letter === 'u')
+				newStr+='5';
+
+			else 
+				newStr+=letter;
+		}
+		return newStr;				
+	}
+// ---------------------------------------------------
+
+	function reverseWord(str){
+        return str.split("").reverse().join("");
+	}
+
+	function matchFirst(str,letter){
+		if(str.charAt(0)===letter)
+			return true;
+		else
+			return false;
+	}
+
+	function specialReverse(str,letter){
+		var word = [];
+		word = str.split(' ');
+		var res = [];
+		for(var i=0; i<word.length; i++){
+			if(matchFirst(word[i],letter))
+				res.push(reverseWord(word[i]));
+			else
+				res.push(word[i]);
+		}
+		return res.join(' ');
+	}
+// ---------------------------------------------------
+	function testJackpot(arr){ 
+		const allEqual = arr => arr.every( v => v === arr[0] ); 
+		return allEqual(arr); 
+	}
+// ---------------------------------------------------
+
+	function removeDups(arr){
+		return arr.filter((value,index) => arr.indexOf(value) === index); 
+	}
+
+	function convertToArray(str){
+		var arr = [];
+		arr = str.split(",");
+		return arr;
+	}
+// ---------------------------------------------------
+
+	function realType(data){
+		if(typeof(data)=='object')
+			if(Array.isArray(data))
+				return 'Array';
+			else if(data==null)
+				return 'null';
+		return typeof(data);
+	}
+// 	console.log(realType(null));
+// ---------------------------------------------------
+	function numInStr(data){
+		var hasNumber = /\d/;
+		var arr = [];
+		for(var i in data)
+			if(hasNumber.test(data[i])){
+				arr.push(data[i]);
+			}
+		return arr;
+	}
+	// console.log(numInStr(["1a", "a", "2b", "b"]));
+//------------------------------------------------------
+ 	console.log(realType (1))
+	console.log(realType("a"))
+	console.log(realType(true))
+	console.log(realType ([])) 
+	console.log(realType(null)) 
+//------------------------------------------------------
+
+</script>  
+<div class="game-board">	
+	<div class="box">
+		<h3>Convert Minutes to second</h3><br>
+		Minutes:<br> <input class="input" type="text" id="minutes"><br>
+		<button class="button" onclick="seconds.value=convertMinutestoSecond(document.getElementById('minutes').value)">Convert</button><br>
+		Seconds:<br> <input class="input" type="text" name="=" id="seconds" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Divides Evenly</h3><br>
+		a =<br> <input type="text" class="input" id="input1"><br>
+		b =<br> <input type="text" class="input" id="input2"><br>
+		<button class="button" onclick="dividesevenly.value=dividesEvenly(document.getElementById('input1').value,document.getElementById('input2').value)">Click</button><br>
+		Result =<br> <input type="text" class="input" id="dividesevenly" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Count Instances of a Character in a String</h3><br>
+		String <br> <input type="text" class="input" id="string"><br>
+		Letter <br> <input type="text" class="input" id="letter"><br>
+		<button class="button" onclick="char_count.value=str_con_cat(document.getElementById('string').value,document.getElementById('letter').value)">Click</button><br>
+		Char count <br> <input type="text" class="input" id="char_count" disabled>	
+	</div>
+
+	<div class="box">
+		<h3>Add up the Numbers from a Single Number</h3><br>
+		Enter integer <br> <input type="text" class="input" id="int_sum"><br>
+		<button class="button" onclick="result_sum.value=addUpto(document.getElementById('int_sum').value)">Click</button>
+		<br>Sum<br> <input type="text" id="result_sum" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Replace Vowel with Another Character</h3><br>
+		Enter String (Replace Vowel)<br> <input type="text" id="vowel_str"><br>
+		<button class="button" onclick="replaced_str.value=replaceVowel(document.getElementById('vowel_str').value)">Click</button><br>
+		Replaced string <br> <input type="text" id="replaced_str" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Reverse Words Starting with a Particular Letter</h3><br>
+		String (Reverse word)<br> <input type="text" id="rev_str"><br>
+		Enter character<br> <input type="text" id="rev_char"><br>
+		<button class="button" onclick="sp_str.value=specialReverse(document.getElementById('rev_str').value,document.getElementById('rev_char').value)" >Click</button><br>
+		Special String<br> <input type="text" id="sp_str" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Hitting the Jackpot</h3><br>
+		arr[0]<br> <input type="text" id="arr0"><br>
+		arr[1]<br> <input type="text" id="arr1"><br>
+		arr[2]<br> <input type="text" id="arr2"><br>
+		arr[3]<br> <input type="text" id="arr3"><br>
+		<button class="button" onclick="jackpot.value=testJackpot([document.getElementById('arr0').value,document.getElementById('arr1').value,document.getElementById('arr2').value,document.getElementById('arr3').value])">Click</button><br>
+		Jackpot<br> <input type="text" id="jackpot" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Remove Duplicates from an Array</h3><br>
+		arr(comma separated)<br> <input type="text" id="arr_dup"><br>
+		<button class="button" onclick="filter_arr.value=removeDups(convertToArray(document.getElementById('arr_dup').value))">Click</button><br>
+		Filtered array<br> <input type="text" id="filter_arr" disabled>
+	</div>
+
+	<div class="box">
+		<h3>Get Real Type</h3><br>
+		Enter data (to check its type)<br>	<input type="text" id="data"><br>
+		<button class="button" onclick="typeOf.value=realType(document.getElementById('data').value)">Click</button><br>
+		Typeof <br><input type="text" id="typeOf" disabled> 
+		<br><br><br>NOTE: check logs for correct answer.
+	</div>
+
+	<div class="box">
+		<h3>Numbers in Strings</h3><br>
+		Enter Array<br> <input type="text" id="arr_alpha"><br>
+		<button class="button" onclick="alpha_num.value=numInStr(convertToArray(document.getElementById('arr_alpha').value))">Click</button><br>
+		Alpha Num Array<br> <input type="text" id="alpha_num" disabled> 
+	</div>
+</div>	
+</body>
+</html>
